@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../../components/Navbar";
+import BackgroundWrapper from "../../components/Background";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -19,9 +20,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${dmSans.variable} antialiased`}>
-      <body className={dmSans.className}>
+      <body className={dmSans.className} >
+          
           <Navbar />
+         
         {children}
+         {/* <BackgroundWrapper /> */}
       </body>
     </html>
   );

@@ -20,5 +20,10 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.2",
     "tailwindcss": "^4.1.11"
-  }
+  },
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }}
 }
