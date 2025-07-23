@@ -19,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmSans.variable} antialiased`}>
+    <html lang="en" className={`${dmSans.variable} ${dmSans.variable}`}>
       <body className={dmSans.className} >
           
           <Navbar />
