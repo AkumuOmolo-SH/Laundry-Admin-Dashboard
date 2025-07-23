@@ -3,8 +3,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="p-8  mt-6">
-      <div className="flex justify-center items-center ">
+     <div className="min-h-screen bg-[url('/background.png')]>
+      <p className="text-gray-800 ">Kneat Laundries</p>
+    <nav className="flex items-center justify-center flex gap-8 justify-center p-8 mt-6 px-4 py-2 bg-white border border-gray-300 rounded-full w-96">
+     
         <ul className="flex space-x-12 ">
           <Link
             href="/About"
@@ -25,7 +27,8 @@ export default function Navbar() {
             All Orders
           </Link>
         </ul>
-      </div>
+     
     </nav>
+     </div>
   );
 }

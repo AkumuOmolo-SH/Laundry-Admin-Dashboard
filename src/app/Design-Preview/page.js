@@ -13,8 +13,8 @@ export default function DesignPreview() {
           <p>Items: 1 Shirt, Trousers</p>
         </div>
         <div className="order-actions">
-          <button className="order-btn update">Mark as Picked Up</button>
-          <button className="order-btn delete">Delete</button>
+          <button className="order-buttn update">Mark as Picked Up</button>
+          <button className="order-buttn delete">Delete</button>
         </div>
       </div>
     </div>

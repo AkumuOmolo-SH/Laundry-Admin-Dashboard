@@ -1,11 +1,17 @@
 import React from 'react';
 
+import Navbar from '../../components/Navbar';
 
-function Navbar() {
+function Homepage() {
   return (
-    <div></div>
+    <main>
+     
+   
+  
+      
+    </main>
   )
 }
 
-export default Navbar;
+export default Homepage;
 

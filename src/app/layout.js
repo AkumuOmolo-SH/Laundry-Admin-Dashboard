@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "../../components/Navbar";
-import BackgroundWrapper from "../../components/Background";
+
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           <Navbar />
          
         {children}
-         {/* <BackgroundWrapper /> */}
+       
       </body>
     </html>
   );
