@@ -1,4 +1,6 @@
-export default function AddOrderForm() {
+import React from "react";
+
+export default function Formpreview() {
   return (
     <div className="form-wrapper">
       <form className="order-form">
@@ -17,7 +19,7 @@ export default function AddOrderForm() {
           <option value="picked-up">Picked Up</option>
         </select>
 
-        <button type="submit" className="form-btn">Submit</button>
+        <button type="submit" className="form-button">Submit</button>
       </form>
     </div>
   );

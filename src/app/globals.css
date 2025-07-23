@@ -1,14 +1,13 @@
 @import "tailwindcss";
-/* 
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
 body {
-  font-family: 'DM-Sans', sans-serif;
-  background-color: #f9fafa;
-  color: #1f2937;
-  margin: 0;
-  padding: 0;
-  line-height: 1.5;
+  font-family: "DM-Sans", sans-serif;
+  background: linear-gradient(to bottom, #4facfe, #ffffff);
+
 }
-*/
+
 .order-card {
   background-color: #ffffff;
   border-radius: 1rem;
@@ -61,7 +60,7 @@ body {
   gap: 0.5rem;
 }
 
-.order-btn {
+.order-butt0n {
   flex: 1;
   padding: 0.5rem;
   border-radius: 9999px;
@@ -72,20 +71,85 @@ body {
   transition: background-color 0.2s ease;
 }
 
-.order-btn.update {
+.order-button.update {
   background-color: #111827;
   color: white;
 }
 
-.order-btn.update:hover {
+.order-button.update:hover {
   background-color: #575757;
 }
 
-.order-btn.delete {
+.order-button.delete {
   background-color: #b8bfff;
   color: #161616;
 }
 
-.order-btn.delete:hover {
+.order-button.delete:hover {
   background-color: #a9b2ff;
+}
+
+/* form styling */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.order-form {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f5f7f9;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: "DM Sans", sans-serif;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.order-form label {
+  display: block;
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.order-form input,
+.order-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
+}
+
+.order-form input:focus,
+.order-form select:focus {
+  border-color: #999;
+  outline: none;
+}
+
+.form-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #000e5f;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #4212c9;
 }
