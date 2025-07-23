@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-const ordersForm = () => {
+function ordersForm ({onOderCreated}) {
   const [customerName, setCustomerName] = useState('');
   const [clothType, setClothType] = useState('');
   const [dateSubmitted, setDateSubmitted] = useState('');
@@ -10,26 +10,23 @@ const ordersForm = () => {
   const [price, setPrice] = useState('');
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    // 
-    const orderData = {
+    
+    await createOrder({
       customerName,
       clothType,
       dateSubmitted,
       dateCompleted,
-      price: parseFloat(price), // Convert price to a number
-    };
-    console.log('Order Submitted:', orderData);
-    // clear form
-    alert('Order created successfully! Check console for data.'); // Using alert for demo, replace with a proper message box
-    // Clear form fields after submission (optional)
-    setCustomerName('');
-    setClothType('');
-    setDateSubmitted('');
-    setDateCompleted('');
-    setPrice('');
-  };
+      price,
+      status:"Pending",
+    });
+    onOderCreated();
+    setCustomerName("");
+    setClothType("");
+    setDateSubmitted("");
+    setDateCompleted("");
+  }
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
