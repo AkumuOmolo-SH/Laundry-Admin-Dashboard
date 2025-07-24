@@ -1,6 +1,6 @@
  "use client";
 import { useState } from "react";
-// import updateOrder from Mike
+ import {updateOrder} from "../lib/api";
 
 const EditOderForm = ({ order, onClose, onOrderUpdated })=> {
     const [customerName, setCustomerName] = useState(order.customerName);
@@ -9,12 +9,6 @@ const EditOderForm = ({ order, onClose, onOrderUpdated })=> {
     const [dateCompleted, setDateCompleted] = useState(order.dateCompleted);
     const [price, setPrice] = useState(order.price);
     const [status, setStatus] = useState(order.status);
-
-    // dumy placeholder function
-    const updateOrder = async (id, order) => {
-  console.log("Mock updateOrder called:", id, order);
-};
-
 
    // handle edit update
     const handleSubmit = async (e) => {

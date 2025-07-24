@@ -1,6 +1,6 @@
 "use client"; // This directive marks the component as a Client Component
-
 import React, { useState } from 'react';
+import { createOrder } from "../lib/api";
 
 const OrdersForm = ({onOrderCreated}) =>{
   const [customerName, setCustomerName] = useState('');
