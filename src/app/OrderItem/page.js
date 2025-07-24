@@ -1,14 +1,20 @@
-"use client";
+ "use client";
 import { useState } from "react";
 // import updateOrder from Mike
 
-function EditOderForm({ order, onclose, onOrderUpdated }) {
-    const [customerName, setCustomerName] = useState('');
-    const [clothType, setClothType] = useState('');
-    const [dateSubmitted, setDateSubmitted] = useState('');
-    const [dateCompleted, setDateCompleted] = useState('');
-    const [price, setPrice] = useState('');
-    const [status, setStatus] = useState(ordersForm.status);
+const EditOderForm = ({ order, onClose, onOrderUpdated })=> {
+    const [customerName, setCustomerName] = useState(order.customerName);
+    const [clothType, setClothType] = useState(order.clothType);
+    const [dateSubmitted, setDateSubmitted] = useState(order.dateSubmitted);
+    const [dateCompleted, setDateCompleted] = useState(order.dateCompleted);
+    const [price, setPrice] = useState(order.price);
+    const [status, setStatus] = useState(order.status);
+
+    // dumy placeholder function
+    const updateOrder = async (id, order) => {
+  console.log("Mock updateOrder called:", id, order);
+};
+
 
    // handle edit update
     const handleSubmit = async (e) => {
@@ -23,7 +29,7 @@ function EditOderForm({ order, onclose, onOrderUpdated }) {
             status,
         });
         onOrderUpdated();
-        onclose();
+        onClose();
     };
 
 
@@ -137,7 +143,6 @@ function EditOderForm({ order, onclose, onOrderUpdated }) {
             class
             >
                 <option>Pending</option>
-                <option>Processing</option>
                 <option>Completed</option>
 
             </select>
@@ -145,7 +150,7 @@ function EditOderForm({ order, onclose, onOrderUpdated }) {
 
         {/*cancel & save button*/}
         <div className="flex justify-end space-x-2"> 
-            <button type="button" onClick={onclose} className="px-4 py-2 border rounded">
+            <button type="button" onClick={onClose} className="px-4 py-2 border rounded">
                 Cancle
             </button>
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">

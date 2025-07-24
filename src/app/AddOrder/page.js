@@ -2,12 +2,13 @@
 
 import React, { useState } from 'react';
 
-const ordersForm = ({onOderCreated}) =>{
+const OrdersForm = ({onOrderCreated}) =>{
   const [customerName, setCustomerName] = useState('');
   const [clothType, setClothType] = useState('');
   const [dateSubmitted, setDateSubmitted] = useState('');
   const [dateCompleted, setDateCompleted] = useState('');
   const [price, setPrice] = useState('');
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -21,11 +22,12 @@ const ordersForm = ({onOderCreated}) =>{
       price,
       status:"Pending",
     });
-    onOderCreated();
+    onOrderCreated();
     setCustomerName("");
     setClothType("");
     setDateSubmitted("");
     setDateCompleted("");
+    setPrice("");
   }
 
   return (
@@ -147,5 +149,5 @@ const ordersForm = ({onOderCreated}) =>{
   );
 }
 
-export default ordersForm;
+export default OrdersForm;
 
