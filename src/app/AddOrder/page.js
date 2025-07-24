@@ -1,13 +1,13 @@
 "use client"; // This directive marks the component as a Client Component
 import React, { useState } from 'react';
-// import { createOrder } from "../lib/api";
+import { createOrder } from "../../../lib/api";
 
-export default function AddOrder({onOrderCreated}) {
-  const [customerName, setCustomerName] = useState('');
-  const [clothType, setClothType] = useState('');
-  const [dateSubmitted, setDateSubmitted] = useState('');
-  const [dateCompleted, setDateCompleted] = useState('');
-  const [price, setPrice] = useState('');
+export default function AddOrder({ onOrderCreated }) {
+  const [customerName, setCustomerName] = useState("");
+  const [clothType, setClothType] = useState("");
+  const [dateSubmitted, setDateSubmitted] = useState("");
+  const [dateCompleted, setDateCompleted] = useState("");
+  const [price, setPrice] = useState("");
 
 
   // Handle form submission
@@ -22,7 +22,10 @@ export default function AddOrder({onOrderCreated}) {
       price,
       status:"Pending",
     });
-    onOrderCreated();
+    if (typeof onOrderCreated === 'function') {
+        onOrderCreated();
+      }
+    // onOrderCreated( );
     setCustomerName("");
     setClothType("");
     setDateSubmitted("");
