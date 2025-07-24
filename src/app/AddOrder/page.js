@@ -1,8 +1,8 @@
 "use client"; // This directive marks the component as a Client Component
 import React, { useState } from 'react';
-import { createOrder } from "../lib/api";
+// import { createOrder } from "../lib/api";
 
-const OrdersForm = ({onOrderCreated}) =>{
+export default function AddOrder({onOrderCreated}) {
   const [customerName, setCustomerName] = useState('');
   const [clothType, setClothType] = useState('');
   const [dateSubmitted, setDateSubmitted] = useState('');
@@ -144,5 +144,5 @@ const OrdersForm = ({onOrderCreated}) =>{
   );
 }
 
-export default OrdersForm;
+
 

@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import {updateOrder} from "../lib/api";
+// import {updateOrder} from "../lib/api";
 
-const EditOderForm = ({ order, onClose, onOrderUpdated })=> {
+export default function OrderItem ({ order, onClose, onOrderUpdated }){
     const [customerName, setCustomerName] = useState(order.customerName);
     const [clothType, setClothType] = useState(order.clothType);
     const [dateSubmitted, setDateSubmitted] = useState(order.dateSubmitted);
@@ -152,4 +152,3 @@ const EditOderForm = ({ order, onClose, onOrderUpdated })=> {
 
 }
 
-export default EditOderForm;
