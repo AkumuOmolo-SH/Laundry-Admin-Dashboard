@@ -32,7 +32,7 @@ export default function AddOrder({onOrderCreated}) {
 
   return (
     <div className="form-wrapper">
-      <h1 className="form-title">Create New Order</h1>
+      {/* <h1 className="form-title">Create New Order</h1> */}
       
        <form className="order-form"  onSubmit={handleSubmit}>         
         {/* Customer Name */}

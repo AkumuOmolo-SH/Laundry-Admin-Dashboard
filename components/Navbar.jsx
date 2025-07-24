@@ -19,7 +19,7 @@ export default function Navbar() {
             Add Order
           </Link>
           <Link
-            href="/Order"
+            href="/OrderItem"
             className="text-gray-400 hover:text-blue-500 transition-colors duration-300"
           >
             All Orders
