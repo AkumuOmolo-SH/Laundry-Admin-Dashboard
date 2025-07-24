@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${dmSans.variable} ${dmSans.variable}`}>
       <body className={dmSans.className}>
         <Header />
-        <Navbar />
+        {/* <Navbar /> */}
         <Background />
         {children}
       </body>

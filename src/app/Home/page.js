@@ -1,6 +1,6 @@
 import React from "react";
 
-function About() {
+function Home() {
   return (
     
     <div className="mt-60 m-100 p-4 rounded-lg">
@@ -16,4 +16,4 @@ function About() {
     </div>  );
 }
 
-export default About;
+export default Home;
