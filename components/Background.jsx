@@ -3,6 +3,7 @@ import react from "react";
 export default function Background() {
   return (
     <div
+      className="absolute inset-0 blur-sm"
       style={{
         backgroundImage: "url('/background.png')",
         backgroundSize: "cover",

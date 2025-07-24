@@ -1,9 +1,9 @@
 import React from "react";
 
-function About() {
+function Home() {
   return (
     
-    <div className="mt-60 m-100 p-4 rounded-lg">
+    <div className="mt-30 m-100 p-4 rounded-lg">
       {/* <h2 className="text-center text-[22] text-white ">Kneat Laundries </h2> */}
       <p className="text-center text-[64px]  m-5 text-white leading-tight">
         Easily manage laundry orders. Add, Edit and Update features for ease.
@@ -16,4 +16,4 @@ function About() {
     </div>  );
 }
 
-export default About;
+export default Home;
