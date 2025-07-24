@@ -31,13 +31,13 @@ const OrdersForm = ({onOrderCreated}) =>{
   }
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Create New Order</h1>
+    <div className="form-wrapper">
+      <h1 className="form-title">Create New Order</h1>
       
-       <form className="space-y-6"  onSubmit={handleSubmit}>         
+       <form className="order-form"  onSubmit={handleSubmit}>         
         {/* Customer Name */}
-        <div className="flex flex-col">
-          <label htmlFor="customerName" className="text-sm font-medium text-gray-700 mb-1">
+        <div >
+          <label htmlFor="customerName" >
             Customer Name
           </label>
            <input
@@ -46,15 +46,14 @@ const OrdersForm = ({onOrderCreated}) =>{
             name="customerName"
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
 
         {/* Cloth Attributes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="flex flex-col">
-           <label htmlFor="clothType" className="text-sm font-medium text-gray-700 mb-1">
+        <div >
+          <div >
+           <label htmlFor="clothType" >
               Cloth Type
             </label>
              <select
@@ -62,7 +61,6 @@ const OrdersForm = ({onOrderCreated}) =>{
               name="clothType"
               value={clothType}
               onChange={(e) => setClothType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
              <option value="">Select Type</option>
@@ -83,9 +81,9 @@ const OrdersForm = ({onOrderCreated}) =>{
         </div> 
 
         {/* Dates */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-           <div className="flex flex-col">
-             <label htmlFor="dateSubmitted" className="text-sm font-medium text-gray-700 mb-1">
+         <div >
+           <div >
+             <label htmlFor="dateSubmitted" >
                Date Submitted
              </label>
              <input
@@ -94,14 +92,13 @@ const OrdersForm = ({onOrderCreated}) =>{
               name="dateSubmitted"
               value={dateSubmitted}
               onChange={(e) => setDateSubmitted(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
         </div>  
 
-          <div className="flex flex-col">
-            <label htmlFor="dateCompleted" className="text-sm font-medium text-gray-700 mb-1">
+          <div >
+            <label htmlFor="dateCompleted" >
              Date Completed
             </label>
             <input
@@ -110,14 +107,13 @@ const OrdersForm = ({onOrderCreated}) =>{
               name="dateCompleted"
               value={dateCompleted}
               onChange={(e) => setDateCompleted(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           {/* Price */}
-        <div className="flex flex-col">
-          <label htmlFor="price" className="text-sm font-medium text-gray-700 mb-1">
+        <div >
+          <label htmlFor="price" >
              Price
           </label>
           <input
@@ -128,7 +124,6 @@ const OrdersForm = ({onOrderCreated}) =>{
             onChange={(e) => setPrice(e.target.value)}
             step="0.01"
             min="0"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
           />
         </div>
@@ -137,7 +132,7 @@ const OrdersForm = ({onOrderCreated}) =>{
         <div>
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-200"
+            className="form-button"
           >
             Create Order
           </button>
