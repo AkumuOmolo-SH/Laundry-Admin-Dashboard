@@ -1,47 +1,46 @@
 "use client"; // This directive marks the component as a Client Component
-import React, { useState } from 'react';
-// import { createOrder } from "../lib/api";
+import React, { useState } from "react";
+import { createOrder } from "../../../lib/api"; // Import the createOrder function
 
-export default function AddOrder({onOrderCreated}) {
-  const [customerName, setCustomerName] = useState('');
-  const [clothType, setClothType] = useState('');
-  const [dateSubmitted, setDateSubmitted] = useState('');
-  const [dateCompleted, setDateCompleted] = useState('');
-  const [price, setPrice] = useState('');
-
+export default function AddOrder({ onOrderCreated }) {
+  const [customerName, setCustomerName] = useState("");
+  const [clothType, setClothType] = useState("");
+  const [dateSubmitted, setDateSubmitted] = useState("");
+  const [dateCompleted, setDateCompleted] = useState("");
+  const [price, setPrice] = useState("");
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    
+
     await createOrder({
       customerName,
       clothType,
       dateSubmitted,
       dateCompleted,
       price,
-      status:"Pending",
+      status: "Pending",
     });
-    onOrderCreated();
+    if (typeof onOrderCreated === "function") {
+      onOrderCreated(); // Call the callback function to notify parent component
+    }
     setCustomerName("");
     setClothType("");
     setDateSubmitted("");
     setDateCompleted("");
     setPrice("");
-  }
+  };
 
   return (
     <div className="form-wrapper">
       <h1 className="form-title">Create New Order</h1>
-      
-       <form className="order-form"  onSubmit={handleSubmit}>         
+
+      <form className="order-form" onSubmit={handleSubmit}>
         {/* Customer Name */}
-        <div >
-          <label htmlFor="customerName" >
-            Customer Name
-          </label>
-           <input
-             type="text"
+        <div>
+          <label htmlFor="customerName">Customer Name</label>
+          <input
+            type="text"
             id="customerName"
             name="customerName"
             value={customerName}
@@ -51,19 +50,17 @@ export default function AddOrder({onOrderCreated}) {
         </div>
 
         {/* Cloth Attributes */}
-        <div >
-          <div >
-           <label htmlFor="clothType" >
-              Cloth Type
-            </label>
-             <select
+        <div>
+          <div>
+            <label htmlFor="clothType">Cloth Type</label>
+            <select
               id="clothType"
               name="clothType"
               value={clothType}
               onChange={(e) => setClothType(e.target.value)}
               required
             >
-             <option value="">Select Type</option>
+              <option value="">Select Type</option>
               <option value="Jacket">Jacket</option>
               <option value="Trouser">Trouser</option>
               <option value="Leather Jacket">Leather Jacket</option>
@@ -78,15 +75,13 @@ export default function AddOrder({onOrderCreated}) {
               <option value="Robe">Robe</option>
             </select>
           </div>
-        </div> 
+        </div>
 
         {/* Dates */}
-         <div >
-           <div >
-             <label htmlFor="dateSubmitted" >
-               Date Submitted
-             </label>
-             <input
+        <div>
+          <div>
+            <label htmlFor="dateSubmitted">Date Submitted</label>
+            <input
               type="date"
               id="dateSubmitted"
               name="dateSubmitted"
@@ -95,27 +90,23 @@ export default function AddOrder({onOrderCreated}) {
               required
             />
           </div>
-        </div>  
+        </div>
 
-          <div >
-            <label htmlFor="dateCompleted" >
-             Date Completed
-            </label>
-            <input
-              type="date"
-              id="dateCompleted"
-              name="dateCompleted"
-              value={dateCompleted}
-              onChange={(e) => setDateCompleted(e.target.value)}
-              required
-            />
-          </div>
+        <div>
+          <label htmlFor="dateCompleted">Date Completed</label>
+          <input
+            type="date"
+            id="dateCompleted"
+            name="dateCompleted"
+            value={dateCompleted}
+            onChange={(e) => setDateCompleted(e.target.value)}
+            required
+          />
+        </div>
 
-          {/* Price */}
-        <div >
-          <label htmlFor="price" >
-             Price
-          </label>
+        {/* Price */}
+        <div>
+          <label htmlFor="price">Price</label>
           <input
             type="number"
             id="price"
@@ -130,19 +121,11 @@ export default function AddOrder({onOrderCreated}) {
 
         {/* Submit Button */}
         <div>
-          <button
-            type="submit"
-            className="form-button"
-          >
+          <button type="submit" className="form-button">
             Create Order
           </button>
         </div>
-        
-    </form>
-        
+      </form>
     </div>
   );
 }
-
-
-

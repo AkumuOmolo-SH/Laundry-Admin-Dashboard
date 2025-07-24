@@ -1,90 +1,49 @@
+// components/FilterBar.jsx
+import React from "react";
+
 export default function FilterBar({
   selectedFilter,
   onFilterChange,
-  orderCounts = {}, // Default to empty object to prevent errors
+  orderCounts = {},
 }) {
-  // Available filter options with their display names
   const filterOptions = [
     { value: "All", label: "All Orders" },
     { value: "Pending", label: "Pending" },
-    { value: "Ready", label: "Ready" },
     { value: "Completed", label: "Completed" },
-    { value: "Cancelled", label: "Cancelled" },
   ];
 
-  // Function to handle filter button clicks
-  const handleFilterClick = (filterValue) => {
-    if (onFilterChange && typeof onFilterChange === "function") {
-      onFilterChange(filterValue);
-    } else {
-      console.warn("FilterBar: onFilterChange prop is not a function");
-    }
-  };
-
-  // Debug logging (remove in production)
-  const debugMode = process.env.NODE_ENV === "development";
-
-  if (debugMode) {
-    console.log("FilterBar props:", {
-      selectedFilter,
-      orderCounts,
-      hasOnFilterChange: typeof onFilterChange === "function",
-    });
-  }
-
   return (
-    <div className="filter-bar">
-      <div className="filter-header">
-        <h3>Filter by Status</h3>
+    <div className="filter-bar bg-white rounded-lg shadow-sm p-4">
+      <div className="filter-header mb-3">
+        <h3 className="text-lg font-semibold text-gray-700">
+          Filter by Status
+        </h3>
       </div>
 
-      <div className="filter-buttons">
+      <div className="flex flex-wrap gap-2">
         {filterOptions.map((option) => {
-          // Check if this filter is currently selected
           const isActive = selectedFilter === option.value;
-
-          // Get count for this filter with better error handling
-          let count = 0;
-          if (orderCounts && typeof orderCounts === "object") {
-            count = orderCounts[option.value] || 0;
-          }
-
-          // Ensure count is a number
-          count = isNaN(count) ? 0 : parseInt(count, 10);
+          const count = orderCounts[option.value] || 0;
 
           return (
             <button
               key={option.value}
-              className={`filter-button ${isActive ? "active" : ""}`}
-              onClick={() => handleFilterClick(option.value)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+              onClick={() => onFilterChange(option.value)}
               type="button"
-              aria-pressed={isActive}
-              aria-label={`Filter by ${option.label} (${count} orders)`}
             >
-              <span className="filter-label">{option.label}</span>
-              <span className="filter-count">({count})</span>
+              <span className="mr-1">{option.label}</span>
+              <span className="bg-white/20 px-1.5 py-0.5 rounded-full">
+                {count}
+              </span>
             </button>
           );
         })}
       </div>
-
-      {/* Debug info - only shows in development */}
-      {debugMode && (
-        <div
-          className="debug-info"
-          style={{
-            fontSize: "12px",
-            color: "#666",
-            marginTop: "10px",
-            padding: "5px",
-            backgroundColor: "#f0f0f0",
-            borderRadius: "3px",
-          }}
-        >
-          <strong>Debug:</strong> Selected: {selectedFilter}, Counts:{" "}
-          {JSON.stringify(orderCounts)}
-        </div>
-      )}
     </div>
   );
 }

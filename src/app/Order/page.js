@@ -1,316 +1,134 @@
 "use client";
+import { useEffect, useState, useMemo } from "react";
+import { getOrders, deleteOrder } from "../../../lib/api";
+import EditOrderForm from "../OrderItem/page";
+import FilterBar from "../../../components/FilterBar"; // Import the FilterBar component
 
-import { useState, useEffect } from "react";
-import FilterBar from "../../../components/FilterBar";
-import OrderList from "../../../components/OrderList";
-import { getOrders } from "../../../lib/api";
-
-// FALLBACK MOCK DATA - Used when API is unavailable
-const FALLBACK_ORDERS = [
-  {
-    id: 1,
-    customerName: "John Doe",
-    customerPhone: "+1234567890",
-    customerEmail: "john@example.com",
-    status: "Pending",
-    // Support both data structures
-    serviceType: "Standard Wash",
-    clothType: "Jacket",
-    itemCount: 5,
-    totalPrice: 25.99,
-    price: 25.99,
-    orderDate: "2024-01-15T10:30:00Z",
-    dateSubmitted: "2024-01-15T10:30:00Z",
-    pickupDate: "2024-01-16T14:00:00Z",
-    dateCompleted: null,
-    notes: "Handle with care - delicate items",
-  },
-  {
-    id: 2,
-    customerName: "Jane Smith",
-    customerPhone: "+1987654321",
-    status: "Ready",
-    serviceType: "Express Wash",
-    clothType: "Trousers",
-    itemCount: 3,
-    totalPrice: 18.5,
-    price: 18.5,
-    orderDate: "2024-01-14T09:15:00Z",
-    dateSubmitted: "2024-01-14T09:15:00Z",
-    deliveryDate: "2024-01-15T16:00:00Z",
-    dateCompleted: "2024-01-15T16:00:00Z",
-  },
-  {
-    id: 3,
-    customerName: "Bob Wilson",
-    status: "Completed",
-    serviceType: "Dry Clean",
-    clothType: "Leather",
-    itemCount: 2,
-    totalPrice: 45.0,
-    price: 45.0,
-    orderDate: "2024-01-13T14:20:00Z",
-    dateSubmitted: "2024-01-13T14:20:00Z",
-    deliveryDate: "2024-01-14T12:00:00Z",
-    dateCompleted: "2024-01-14T12:00:00Z",
-    notes: "Suits and formal wear",
-  },
-  {
-    id: 4,
-    customerName: "Alice Brown",
-    status: "Cancelled",
-    serviceType: "Standard Wash",
-    clothType: "Suit",
-    itemCount: 7,
-    totalPrice: 32.75,
-    price: 32.75,
-    orderDate: "2024-01-12T11:45:00Z",
-    dateSubmitted: "2024-01-12T11:45:00Z",
-    dateCompleted: null,
-  },
-  {
-    id: 5,
-    customerName: "Tom Green",
-    status: "Completed",
-    clothType: "Towels",
-    serviceType: "Standard Wash",
-    price: 12.5,
-    totalPrice: 12.5,
-    dateSubmitted: "2024-01-15T08:00:00Z",
-    orderDate: "2024-01-15T08:00:00Z",
-    dateCompleted: "2024-01-16T10:00:00Z",
-  },
-  {
-    id: 6,
-    customerName: "Lucy White",
-    status: "Pending",
-    clothType: "Duvet",
-    serviceType: "Premium Wash",
-    price: 55.0,
-    totalPrice: 55.0,
-    dateSubmitted: "2024-01-11T13:00:00Z",
-    orderDate: "2024-01-11T13:00:00Z",
-    dateCompleted: null,
-  },
-];
-
-export default function OrderPage() {
-  // State to store all orders from the API
+export default function OrdersTable() {
   const [orders, setOrders] = useState([]);
+  const [editingOrder, setEditingOrder] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState("All"); // State for filter selection
 
-  // State to track which filter is currently selected
-  const [selectedFilter, setSelectedFilter] = useState("All");
+  const fetchOrders = async () => {
+    const data = await getOrders();
+    setOrders(data);
+  };
 
-  // State to handle loading state
-  const [isLoading, setIsLoading] = useState(true);
+  const handleDelete = async (id) => {
+    await deleteOrder(id);
+    fetchOrders();
+  };
 
-  // State to handle any errors
-  const [error, setError] = useState(null);
-
-  // State to track if component has mounted (fixes hydration issues)
-  const [isMounted, setIsMounted] = useState(false);
-
-  // State to track API availability
-  const [isUsingFallback, setIsUsingFallback] = useState(false);
-
-  // Fetch orders when component loads
   useEffect(() => {
-    setIsMounted(true);
     fetchOrders();
   }, []);
 
-  // Function to fetch orders from the API with fallback
-  const fetchOrders = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
+  // Calculate order counts for each filter category
+  const orderCounts = useMemo(() => {
+    return orders.reduce((counts, order) => {
+      counts["All"] = (counts["All"] || 0) + 1;
+      counts[order.status] = (counts[order.status] || 0) + 1;
+      return counts;
+    }, {});
+  }, [orders]);
 
-      // Try to fetch from API first
-      const ordersData = await getOrders();
-
-      setOrders(ordersData);
-      setIsUsingFallback(false);
-
-      // Debug logging in development
-      if (process.env.NODE_ENV === "development") {
-        console.log(
-          "✅ Successfully fetched orders from API:",
-          ordersData.length,
-          "orders"
-        );
-      }
-    } catch (err) {
-      console.warn("⚠️ API unavailable, using fallback data:", err.message);
-
-      // Use fallback data when API is unavailable
-      setOrders(FALLBACK_ORDERS);
-      setIsUsingFallback(true);
-
-      // Only show error if fallback also fails (shouldn't happen)
-      if (!FALLBACK_ORDERS || FALLBACK_ORDERS.length === 0) {
-        setError("Unable to load orders. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Function to filter orders based on selected status
-  const getFilteredOrders = () => {
-    if (selectedFilter === "All") {
-      return orders;
-    }
+  // Filter orders based on selected filter
+  const filteredOrders = useMemo(() => {
+    if (selectedFilter === "All") return orders;
     return orders.filter((order) => order.status === selectedFilter);
-  };
-
-  // Function to handle filter changes from FilterBar
-  const handleFilterChange = (filterValue) => {
-    setSelectedFilter(filterValue);
-
-    // Debug logging
-    if (process.env.NODE_ENV === "development") {
-      console.log("🔍 Filter changed to:", filterValue);
-    }
-  };
-
-  // Function to handle order updates from OrderCard
-  const handleOrderUpdated = (updatedOrder) => {
-    setOrders((prevOrders) =>
-      prevOrders.map((order) =>
-        order.id === updatedOrder.id ? updatedOrder : order
-      )
-    );
-
-    // Optionally refetch from server to ensure consistency
-    if (!isUsingFallback) {
-      fetchOrders();
-    }
-  };
-
-  // Calculate order counts for filter bar
-  const getOrderCounts = () => {
-    return {
-      All: orders.length,
-      Pending: orders.filter((o) => o.status === "Pending").length,
-      Ready: orders.filter((o) => o.status === "Ready").length,
-      Completed: orders.filter((o) => o.status === "Completed").length,
-      Cancelled: orders.filter((o) => o.status === "Cancelled").length,
-    };
-  };
-
-  // Show loading message while fetching data or before mounting
-  if (!isMounted || isLoading) {
-    return (
-      <div className="order-page">
-        <div className="loading-message">
-          <div className="loading-spinner"></div>
-          Loading orders...
-        </div>
-      </div>
-    );
-  }
-
-  // Show error message if something went wrong and no fallback available
-  if (error) {
-    return (
-      <div className="order-page">
-        <div className="error-message">
-          <h3>⚠️ Unable to Load Orders</h3>
-          <p>{error}</p>
-          <button onClick={fetchOrders} className="retry-button">
-            🔄 Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // Get the filtered orders to display
-  const filteredOrders = getFilteredOrders();
-  const orderCounts = getOrderCounts();
+  }, [orders, selectedFilter]);
 
   return (
-    <div className="order-page">
-      {/* Page Header */}
-      <div className="page-header">
-        <h1>Orders Management</h1>
-        <p>Manage and track all laundry orders</p>
-
-        {/* Show API status in development */}
-        {process.env.NODE_ENV === "development" && isUsingFallback && (
-          <div
-            className="dev-notice"
-            style={{
-              backgroundColor: "#fff3cd",
-              color: "#856404",
-              padding: "8px 12px",
-              borderRadius: "4px",
-              fontSize: "14px",
-              marginTop: "10px",
-            }}
-          >
-            ⚠️ Dev Mode: Using fallback data (API unavailable)
-          </div>
-        )}
-      </div>
-
+    <div className="mt-8">
       {/* Filter Bar */}
-      <FilterBar
-        selectedFilter={selectedFilter}
-        onFilterChange={handleFilterChange}
-        orderCounts={orderCounts}
-      />
-
-      {/* Main Content */}
-      <div className="order-content">
-        {/* Display filtered orders */}
-        <OrderList
-          orders={filteredOrders}
-          onOrderUpdated={handleOrderUpdated}
+      <div className="mb-6">
+        <FilterBar
+          selectedFilter={selectedFilter}
+          onFilterChange={setSelectedFilter}
+          orderCounts={orderCounts}
         />
+      </div>
 
-        {/* Show message if no orders match the filter */}
-        {filteredOrders.length === 0 && orders.length > 0 && (
-          <div className="no-orders-message">
-            <h3>No orders found</h3>
-            <p>
-              No orders match the &quot;{selectedFilter}&quot; status filter.
-            </p>
-            <button
-              onClick={() => setSelectedFilter("All")}
-              className="show-all-button"
+      {/* Card Grid Container */}
+      <div className="order-card">
+        {filteredOrders.length > 0 ? (
+          filteredOrders.map((order) => (
+            <div
+              key={order.id}
+              className="border rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow"
             >
-              Show All Orders
-            </button>
-          </div>
-        )}
+              {/* Card Header */}
+              <div className="order-header">
+                <h3 className="order-header">{order.customerName}</h3>
+                <span
+                  className={`order-status ${
+                    order.status === "Completed"
+                      ? "completed"
+                      : order.status === "Pending"
+                      ? "pending"
+                      : "bg-blue-100 text-blue-800"
+                  }`}
+                >
+                  {order.status}
+                </span>
+              </div>
 
-        {/* Show message if no orders at all */}
-        {orders.length === 0 && (
-          <div className="empty-state">
-            <h3>No orders available</h3>
-            <p>There are currently no orders in the system.</p>
-            <button onClick={fetchOrders} className="refresh-button">
-              🔄 Refresh
-            </button>
+              {/* Order Details */}
+              <div className="order-details">
+                <div className="order-row">
+                  <span className="label">Clothe Type:</span>
+                  <span>{order.clothType}</span>
+                </div>
+                <div className="order-row">
+                  <span className="label">Submission:</span>
+                  <span>{order.dateSubmitted}</span>
+                </div>
+                <div className="order-row">
+                  <span className="label">Completion:</span>
+                  <span>{order.dateCompleted || "N/A"}</span>
+                </div>
+                <div className="order-row">
+                  <span className="label">Price:</span>
+                  <span className="price">${order.price}</span>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="order-button">
+                <button
+                  onClick={() => setEditingOrder(order)}
+                  className="update"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(order.id)}
+                  className="delete"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>
+            <p>
+              {orders.length === 0
+                ? "No orders available"
+                : `No ${selectedFilter.toLowerCase()} orders found`}
+            </p>
           </div>
         )}
       </div>
 
-      {/* Footer with stats */}
-      <div className="page-footer">
-        <div className="stats-summary">
-          <span>Total Orders: {orders.length}</span>
-          <span>•</span>
-          <span>Showing: {filteredOrders.length}</span>
-          {isUsingFallback && (
-            <>
-              <span>•</span>
-              <span className="fallback-indicator">Using Fallback Data</span>
-            </>
-          )}
-        </div>
-      </div>
+      {/* Edit Form */}
+      {editingOrder && (
+        <EditOrderForm
+          order={editingOrder}
+          onClose={() => setEditingOrder(null)}
+          onOrderUpdated={fetchOrders}
+        />
+      )}
     </div>
   );
 }
