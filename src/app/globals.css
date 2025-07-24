@@ -1,4 +1,155 @@
 @import "tailwindcss";
 
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
+body {
+  font-family: "DM-Sans", sans-serif;
+    background-color: #eeeeee;
 
+}
+
+.order-card {
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid #e5e7eb;
+  max-width: 400px;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-card .order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-card .order-customer {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.order-card .order-status {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.order-status.ready {
+  background-color: #fad1ea;
+  color: #363636;
+}
+
+.order-status.picked {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.order-details {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.order-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.order-button {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.order-button.update {
+  background-color: #111827;
+  color: white;
+}
+
+.order-button.update:hover {
+  background-color: #575757;
+}
+
+.order-button.delete {
+  background-color: #b8bfff;
+  color: #161616;
+}
+
+.order-button.delete:hover {
+  background-color: #a9b2ff;
+}
+
+/* form styling */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.order-form {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f5f7f9;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: "DM Sans", sans-serif;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.order-form label {
+  display: block;
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.order-form input,
+.order-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
+}
+
+.order-form input:focus,
+.order-form select:focus {
+  border-color: #999;
+  outline: none;
+}
+
+.form-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #000e5f;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-button:hover {
+  background-color: #4212c9;
+}

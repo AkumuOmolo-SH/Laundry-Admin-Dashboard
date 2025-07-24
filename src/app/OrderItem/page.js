@@ -1,38 +1,35 @@
-"use client"; // This directive marks the component as a Client Component
-import React, { useState } from 'react';
-// import { createOrder } from "../lib/api";
+"use client";
+import { useState } from "react";
+// import {updateOrder} from "../lib/api";
 
-export default function AddOrder({onOrderCreated}) {
-  const [customerName, setCustomerName] = useState('');
-  const [clothType, setClothType] = useState('');
-  const [dateSubmitted, setDateSubmitted] = useState('');
-  const [dateCompleted, setDateCompleted] = useState('');
-  const [price, setPrice] = useState('');
+export default function OrderItem ({ order, onClose, onOrderUpdated }){
+    const [customerName, setCustomerName] = useState(order.customerName);
+    const [clothType, setClothType] = useState(order.clothType);
+    const [dateSubmitted, setDateSubmitted] = useState(order.dateSubmitted);
+    const [dateCompleted, setDateCompleted] = useState(order.dateCompleted);
+    const [price, setPrice] = useState(order.price);
+    const [status, setStatus] = useState(order.status);
+
+   // handle edit update
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // get (updateOrder) from Mike
+        await updateOrder(order.id, {
+            customerName,
+            clothType,
+            dateSubmitted,
+            dateCompleted,
+            price,
+            status,
+        });
+        onOrderUpdated();
+        onClose();
+    };
 
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-    
-    await createOrder({
-      customerName,
-      clothType,
-      dateSubmitted,
-      dateCompleted,
-      price,
-      status:"Pending",
-    });
-    onOrderCreated();
-    setCustomerName("");
-    setClothType("");
-    setDateSubmitted("");
-    setDateCompleted("");
-    setPrice("");
-  }
-
-  return (
-    <div className="form-wrapper">
-      <h1 className="form-title">Create New Order</h1>
+    return (
+        <div className="form-wrapper">
+      <h1 className="form-title">Edit Order</h1>
       
        <form className="order-form"  onSubmit={handleSubmit}>         
         {/* Customer Name */}
@@ -63,7 +60,7 @@ export default function AddOrder({onOrderCreated}) {
               onChange={(e) => setClothType(e.target.value)}
               required
             >
-             <option value="">Select Type</option>
+              <option value="">Select Type</option>
               <option value="Jacket">Jacket</option>
               <option value="Trouser">Trouser</option>
               <option value="Leather Jacket">Leather Jacket</option>
@@ -128,21 +125,30 @@ export default function AddOrder({onOrderCreated}) {
           />
         </div>
 
-        {/* Submit Button */}
-        <div>
-          <button
-            type="submit"
-            className="form-button"
-          >
-            Create Order
-          </button>
+        {/*status*/}
+        <div  >
+            <select value={status} 
+            onChange={(e) => setStatus(e.target.value)}
+            class
+            >
+                <option>Pending</option>
+                <option>Completed</option>
+
+            </select>
         </div>
-        
+
+        {/*cancel & save button*/}
+        <div className="form-button"> 
+            <button type="button" onClick={onClose} >
+                Cancle
+            </button>
+            <button type="submit" >
+                Save
+            </button>
+        </div>        
     </form>
-        
     </div>
-  );
+    );
+
 }
-
-
 

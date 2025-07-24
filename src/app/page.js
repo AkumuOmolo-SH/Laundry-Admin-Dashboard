@@ -1,5 +1,5 @@
 import React from "react";
-import "./globals.css";
-export default function OrdersPage() {
+
+export default function Homepage() {
   return <div>Orders Page</div>;
 }
