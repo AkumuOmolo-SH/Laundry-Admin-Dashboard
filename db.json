@@ -1,7 +1,7 @@
 {
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "customerName": "Alice Kimani",
       "clotheType": "Trousers",
       "dateSubmitted": "2025-07-20",
@@ -10,21 +10,12 @@
       "status": "Ready"
     },
     {
-      "id": 2,
+      "id": "2",
       "customerName": "Brian Otieno",
       "clotheType": "Shirt",
       "dateSubmitted": "2025-07-21",
       "dateCompleted": "2025-07-23",
       "price": 300,
-      "status": "Pending"
-    },
-    {
-      "id": 3,
-      "customerName": "Cynthia Wanjiku",
-      "clotheType": "Dress",
-      "dateSubmitted": "2025-07-22",
-      "dateCompleted": "2025-07-24",
-      "price": 700,
       "status": "Pending"
     },
     {
@@ -48,20 +39,11 @@
     {
       "id": "9f5d",
       "customerName": "Akumu",
-      "clothType": "Bedsheet",
+      "clothType": "Curtains",
       "dateSubmitted": "2025-07-24",
       "dateCompleted": "2025-07-30",
-      "price": "1500",
-      "status": "Pending"
-    },
-    {
-      "id": "9d7f",
-      "customerName": "qwwe",
-      "clothType": "Towels",
-      "dateSubmitted": "2025-07-25",
-      "dateCompleted": "2025-07-27",
-      "price": "798",
-      "status": "Pending"
+      "price": "149.97",
+      "status": "Completed"
     }
   ]
 }
