@@ -3,27 +3,27 @@
     {
       "id": "1",
       "customerName": "Alice Kimani",
-      "clotheType": "Trousers",
+      "clothType": "Trousers",
       "dateSubmitted": "2025-07-20",
-      "dateCompleted": "2025-07-22",
+      "dateCompleted": "2025-07-21",
       "price": 500,
       "status": "Ready"
     },
     {
       "id": "2",
       "customerName": "Brian Otieno",
-      "clotheType": "Shirt",
+      "clothType": "Shirt",
       "dateSubmitted": "2025-07-21",
-      "dateCompleted": "",
+      "dateCompleted": "2025-07-22",
       "price": 300,
-      "status": "Pending"
+      "status": "Completed"
     },
     {
       "id": "3",
       "customerName": "Cynthia Wanjiku",
-      "clotheType": "Dress",
+      "clothType": "Dress",
       "dateSubmitted": "2025-07-22",
-      "dateCompleted": "",
+      "dateCompleted": "2025-07-23",
       "price": 700,
       "status": "Pending"
     },
@@ -46,22 +46,13 @@
       "status": "Pending"
     },
     {
-      "id": "feac",
-      "customerName": "Willy",
-      "clothType": "Jacket",
+      "id": "4e97",
+      "customerName": "Jojo",
+      "clothType": "Curtains",
       "dateSubmitted": "2025-07-24",
-      "dateCompleted": "2025-07-25",
-      "price": "250",
-      "status": "Pending"
-    },
-    {
-      "id": "e3f3",
-      "customerName": "Willy",
-      "clothType": "Leather Jacket",
-      "dateSubmitted": "2025-07-24",
-      "dateCompleted": "2025-07-25",
-      "price": "50",
-      "status": "Pending"
+      "dateCompleted": "2025-07-26",
+      "price": "500",
+      "status": "Completed"
     }
   ]
 }

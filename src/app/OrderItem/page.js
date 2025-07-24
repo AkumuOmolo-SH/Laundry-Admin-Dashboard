@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-// import {updateOrder} from "../lib/api";
+import {updateOrder} from "../../../lib/api";
 
 export default function OrderItem ({ order, onClose, onOrderUpdated }){
     const [customerName, setCustomerName] = useState(order.customerName);
