@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { updateOrder } from "../../../lib/api"; // Import the updateOrder function
+import { updateOrder } from "../../../lib/api";
 
 export default function OrderItem({ order, onClose, onOrderUpdated }) {
   const [customerName, setCustomerName] = useState(order.customerName);
@@ -10,10 +10,8 @@ export default function OrderItem({ order, onClose, onOrderUpdated }) {
   const [price, setPrice] = useState(order.price);
   const [status, setStatus] = useState(order.status);
 
-  // handle edit update
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // get (updateOrder) from Mike
     await updateOrder(order.id, {
       customerName,
       clothType,
@@ -28,104 +26,78 @@ export default function OrderItem({ order, onClose, onOrderUpdated }) {
 
   return (
     <div className="form-wrapper">
-      <h1 className="form-title">Edit Order</h1>
-
       <form className="order-form" onSubmit={handleSubmit}>
-        {/* Customer Name */}
-        <div>
-          <label htmlFor="customerName">Customer Name</label>
-          <input
-            type="text"
-            id="customerName"
-            name="customerName"
-            value={customerName}
-            onChange={(e) => setCustomerName(e.target.value)}
-            required
-          />
-        </div>
+        <h1 className="form-title">Edit Order</h1>
 
-        {/* Cloth Attributes */}
-        <div>
-          <div>
-            <label htmlFor="clothType">Cloth Type</label>
-            <select
-              id="clothType"
-              name="clothType"
-              value={clothType}
-              onChange={(e) => setClothType(e.target.value)}
-              required
-            >
-              <option value="">Select Type</option>
-              <option value="Jacket">Jacket</option>
-              <option value="Trouser">Trouser</option>
-              <option value="Leather Jacket">Leather Jacket</option>
-              <option value="Suit">Suit</option>
-              <option value="Towels">Towels</option>
-              <option value="Duvet">Duvet</option>
-              <option value="Bedsheet">Bedsheet</option>
-              <option value="Shirt">Shirt</option>
-              <option value="Curtains">Curtains</option>
-              <option value="Trench Coat">Trench Coat</option>
-              <option value="Bed Cover">Bed Cover</option>
-              <option value="Robe">Robe</option>
-            </select>
-          </div>
-        </div>
+        <label htmlFor="customerName">Customer Name</label>
+        <input
+          type="text"
+          id="customerName"
+          value={customerName}
+          onChange={(e) => setCustomerName(e.target.value)}
+          required
+        />
 
-        {/* Dates */}
-        <div>
-          <div>
-            <label htmlFor="dateSubmitted">Date Submitted</label>
-            <input
-              type="date"
-              id="dateSubmitted"
-              name="dateSubmitted"
-              value={dateSubmitted}
-              onChange={(e) => setDateSubmitted(e.target.value)}
-              required
-            />
-          </div>
-        </div>
+        <label htmlFor="clothType">Cloth Type</label>
+        <select
+          id="clothType"
+          value={clothType}
+          onChange={(e) => setClothType(e.target.value)}
+          required
+        >
+          <option value="">Select Type</option>
+          <option value="Jacket">Jacket</option>
+          <option value="Trouser">Trouser</option>
+          <option value="Leather Jacket">Leather Jacket</option>
+          <option value="Suit">Suit</option>
+          <option value="Towels">Towels</option>
+          <option value="Duvet">Duvet</option>
+          <option value="Bedsheet">Bedsheet</option>
+          <option value="Shirt">Shirt</option>
+          <option value="Curtains">Curtains</option>
+          <option value="Trench Coat">Trench Coat</option>
+          <option value="Bed Cover">Bed Cover</option>
+          <option value="Robe">Robe</option>
+        </select>
 
-        <div>
-          <label htmlFor="dateCompleted">Date Completed</label>
-          <input
-            type="date"
-            id="dateCompleted"
-            name="dateCompleted"
-            value={dateCompleted}
-            onChange={(e) => setDateCompleted(e.target.value)}
-            required
-          />
-        </div>
+        <label htmlFor="dateSubmitted">Date Submitted</label>
+        <input
+          type="date"
+          id="dateSubmitted"
+          value={dateSubmitted}
+          onChange={(e) => setDateSubmitted(e.target.value)}
+          required
+        />
 
-        {/* Price */}
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            step="0.01"
-            min="0"
-            required
-          />
-        </div>
+        <label htmlFor="dateCompleted">Date Completed</label>
+        <input
+          type="date"
+          id="dateCompleted"
+          value={dateCompleted}
+          onChange={(e) => setDateCompleted(e.target.value)}
+          required
+        />
 
-        {/*status*/}
-        <div>
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option>Pending</option>
-            <option>Completed</option>
-          </select>
-        </div>
+        <label htmlFor="price">Price</label>
+        <input
+          type="number"
+          id="price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          step="0.01"
+          min="0"
+          required
+        />
 
-        {/*cancel & save button*/}
+        <label htmlFor="status">Status</label>
+        <select id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option>Pending</option>
+          <option>Completed</option>
+        </select>
+
         <div className="form-button">
           <button type="button" onClick={onClose}>
-            Cancle
+            Cancel
           </button>
           <button type="submit">Save</button>
         </div>

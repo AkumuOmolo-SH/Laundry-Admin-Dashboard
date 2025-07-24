@@ -44,6 +44,15 @@
       "dateCompleted": "2025-07-30",
       "price": "149.97",
       "status": "Completed"
+    },
+    {
+      "id": "a892",
+      "customerName": "Kamau",
+      "clothType": "Jacket",
+      "dateSubmitted": "2025-07-25",
+      "dateCompleted": "2025-07-26",
+      "price": "50",
+      "status": "Pending"
     }
   ]
 }

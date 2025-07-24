@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
     >
       <body className={dmSans.className}>
         <Header />
-        <Navbar />
         <Background />
         {children}
       </body>

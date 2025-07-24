@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import { getOrders, deleteOrder } from "../../../lib/api";
-import EditOrderForm from "../OrderItem/page";
-import FilterBar from "../../../components/FilterBar"; // Import the FilterBar component
+import EditOrderForm from "../OrderItem/page"; // corrected import
+import FilterBar from "../../../components/FilterBar";
 
 export default function OrdersTable() {
   const [orders, setOrders] = useState([]);
   const [editingOrder, setEditingOrder] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState("All"); // State for filter selection
+  const [selectedFilter, setSelectedFilter] = useState("All");
 
   const fetchOrders = async () => {
     const data = await getOrders();
@@ -23,7 +23,6 @@ export default function OrdersTable() {
     fetchOrders();
   }, []);
 
-  // Calculate order counts for each filter category
   const orderCounts = useMemo(() => {
     return orders.reduce((counts, order) => {
       counts["All"] = (counts["All"] || 0) + 1;
@@ -32,7 +31,6 @@ export default function OrdersTable() {
     }, {});
   }, [orders]);
 
-  // Filter orders based on selected filter
   const filteredOrders = useMemo(() => {
     if (selectedFilter === "All") return orders;
     return orders.filter((order) => order.status === selectedFilter);
@@ -50,23 +48,20 @@ export default function OrdersTable() {
       </div>
 
       {/* Card Grid Container */}
-      <div className="order-card">
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center" }}>
         {filteredOrders.length > 0 ? (
           filteredOrders.map((order) => (
-            <div
-              key={order.id}
-              className="border rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow"
-            >
-              {/* Card Header */}
+            <div key={order.id} className="order-card">
+              {/* Header */}
               <div className="order-header">
-                <h3 className="order-header">{order.customerName}</h3>
+                <h3 className="order-customer">{order.customerName}</h3>
                 <span
                   className={`order-status ${
                     order.status === "Completed"
                       ? "completed"
                       : order.status === "Pending"
                       ? "pending"
-                      : "bg-blue-100 text-blue-800"
+                      : ""
                   }`}
                 >
                   {order.status}
@@ -93,31 +88,23 @@ export default function OrdersTable() {
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="order-button">
-                <button
-                  onClick={() => setEditingOrder(order)}
-                  className="update"
-                >
+              {/* Buttons */}
+              <div className="order-actions">
+                <button onClick={() => setEditingOrder(order)} className="order-button update">
                   Edit
                 </button>
-                <button
-                  onClick={() => handleDelete(order.id)}
-                  className="delete"
-                >
+                <button onClick={() => handleDelete(order.id)} className="order-button delete">
                   Delete
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <div>
-            <p>
-              {orders.length === 0
-                ? "No orders available"
-                : `No ${selectedFilter.toLowerCase()} orders found`}
-            </p>
-          </div>
+          <p>
+            {orders.length === 0
+              ? "No orders available"
+              : `No ${selectedFilter.toLowerCase()} orders found`}
+          </p>
         )}
       </div>
 
