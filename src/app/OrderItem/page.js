@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 // import updateOrder from Mike
 
@@ -62,18 +63,18 @@ function EditOderForm({ order, onclose, onOrderUpdated }) {
               required
             >
               <option value="">Select Type</option>
-              <option value="cotton">Jacket</option>
-              <option value="cotton">Trauser</option>
-              <option value="cotton">Leather Jacket</option>
-              <option value="silk">Suit</option>
-              <option value="silk">Towels</option>
-              <option value="silk">Duvet</option>
-              <option value="polyester">Bedsheet</option>
-              <option value="polyester">Shirt</option>
-              <option value="polyester">Curtains</option>
-              <option value="wool">Trench Coat</option>
-              <option value="wool">Bed Cover</option>
-              <option value="wool">Robe</option>
+              <option value="Jacket">Jacket</option>
+              <option value="Trouser">Trouser</option>
+              <option value="Leather Jacket">Leather Jacket</option>
+              <option value="Suit">Suit</option>
+              <option value="Towels">Towels</option>
+              <option value="Duvet">Duvet</option>
+              <option value="Bedsheet">Bedsheet</option>
+              <option value="Shirt">Shirt</option>
+              <option value="Curtains">Curtains</option>
+              <option value="Trench Coat">Trench Coat</option>
+              <option value="Bed Cover">Bed Cover</option>
+              <option value="Robe">Robe</option>
             </select>
           </div>
         </div> 

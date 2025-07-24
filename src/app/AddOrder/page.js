@@ -1,8 +1,8 @@
- "use client"; // This directive marks the component as a Client Component
+"use client"; // This directive marks the component as a Client Component
 
 import React, { useState } from 'react';
 
-function ordersForm ({onOderCreated}) {
+const ordersForm = ({onOderCreated}) =>{
   const [customerName, setCustomerName] = useState('');
   const [clothType, setClothType] = useState('');
   const [dateSubmitted, setDateSubmitted] = useState('');
@@ -63,19 +63,19 @@ function ordersForm ({onOderCreated}) {
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             >
-              <option value="">Select Type</option>
-              <option value="cotton">Jacket</option>
-              <option value="cotton">Trauser</option>
-              <option value="cotton">Leather Jacket</option>
-              <option value="silk">Suit</option>
-              <option value="silk">Towels</option>
-              <option value="silk">Duvet</option>
-              <option value="polyester">Bedsheet</option>
-              <option value="polyester">Shirt</option>
-              <option value="polyester">Curtains</option>
-              <option value="wool">Trench Coat</option>
-              <option value="wool">Bed Cover</option>
-              <option value="wool">Robe</option>
+             <option value="">Select Type</option>
+              <option value="Jacket">Jacket</option>
+              <option value="Trouser">Trouser</option>
+              <option value="Leather Jacket">Leather Jacket</option>
+              <option value="Suit">Suit</option>
+              <option value="Towels">Towels</option>
+              <option value="Duvet">Duvet</option>
+              <option value="Bedsheet">Bedsheet</option>
+              <option value="Shirt">Shirt</option>
+              <option value="Curtains">Curtains</option>
+              <option value="Trench Coat">Trench Coat</option>
+              <option value="Bed Cover">Bed Cover</option>
+              <option value="Robe">Robe</option>
             </select>
           </div>
         </div> 
