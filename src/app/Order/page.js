@@ -84,7 +84,7 @@ export default function OrdersTable() {
                 </div>
                 <div className="order-row">
                   <span className="label">Price:</span>
-                  <span className="price">${order.price}</span>
+                  <span className="price">KSH {order.price}</span>
                 </div>
               </div>
 

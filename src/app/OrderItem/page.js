@@ -95,11 +95,11 @@ export default function OrderItem({ order, onClose, onOrderUpdated }) {
           <option>Completed</option>
         </select>
 
-        <div className="form-button">
-          <button type="button" onClick={onClose}>
+        <div className="form-actions">
+          <button type="button" onClick={onClose} className="form-button cancel">
             Cancel
           </button>
-          <button type="submit">Save</button>
+          <button type="submit" className="form-button">Save</button>
         </div>
       </form>
     </div>

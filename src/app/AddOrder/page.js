@@ -33,9 +33,10 @@ export default function AddOrder({ onOrderCreated }) {
 
   return (
     <div className="form-wrapper">
-      <h1 className="form-title">Create New Order</h1>
+      
 
       <form className="order-form" onSubmit={handleSubmit}>
+        <h1 className="form-title">Create New Order</h1>
         {/* Customer Name */}
         <div>
           <label htmlFor="customerName">Customer Name</label>
