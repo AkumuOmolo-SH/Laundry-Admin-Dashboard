@@ -13,7 +13,7 @@
 - [Preview the System (Deployed Links)](#preview-the-system-deployed-links)
 - [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
+  
 
 ---
 
@@ -162,8 +162,8 @@ To run both the frontend and the fake backend concurrently, you'll need two sepa
 
 You can preview the deployed versions of the Kneat Laundries Dashboard:
 
--   **Frontend (Vercel):** Your Vercel Deployment Link Here]](https://laundry-admin-dashboard-jmho-git-main-akumuomolo-shs-projects.vercel.app/Home
--   **Backend (Render):** [Your Render Deployment Link Here]
+-   **Frontend (Vercel):** https://laundry-admin-dashboard-jmho-git-main-akumuomolo-shs-projects.vercel.app/Home
+-   **Backend (Render):** https://backend-kneat-laundries.onrender.com/orders
 
 *Note: Please replace the placeholder links above with your actual deployed URLs.*
 
