@@ -45,9 +45,9 @@ As an administrator or employee, you can:
 The Kneat Laundries Dashboard is built with modern web technologies:
 
 -   **Frontend:**
-    -   [Next.js](https://nextjs.org/): A React framework for production, providing server-side rendering and static site generation capabilities.
-    -   [React](https://react.dev/): A JavaScript library for building user interfaces.
-    -   [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly styling components.
+    -   [Next.js]: A React framework for production, providing server-side rendering and static site generation capabilities.
+    -   [React]: A JavaScript library for building user interfaces.
+    -   [Tailwind CSS]: A utility-first CSS framework for rapidly styling components.
     -   Global CSS: For additional styling and overrides.
 
 ---
