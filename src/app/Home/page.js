@@ -10,7 +10,7 @@ function Home() {
       </p>
 
       <p className="font-normal text-center text-[20px] mt-5 m-10 text-gray-700 leading-tight">
-        We believe admin work shouldn't slow you down. That is why we've built a
+        We believe admin work shouldn&apos;t slow you down. That is why we&apos;ve built a
         system that is intuitive, fast, and tailored for the laundry industry.
       </p>
     </div>  );
