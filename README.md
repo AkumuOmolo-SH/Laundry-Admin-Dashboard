@@ -1,6 +1,6 @@
 
 
-# Kneat Laundries – Business Admin Dashboard
+**# Kneat Laundries – Business Admin Dashboard**
 
 ***## Table of Contents***
 
