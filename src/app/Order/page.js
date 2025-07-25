@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import { getOrders, deleteOrder } from "../../../lib/api";
-import EditOrderForm from "../OrderItem/page";
+import EditOrderForm from "../../../components/Order/OrderItem";
 import FilterBar from "../../../components/FilterBar";
 
 export default function OrdersTable() {
