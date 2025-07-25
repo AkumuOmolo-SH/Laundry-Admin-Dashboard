@@ -66,7 +66,6 @@ The Kneat Laundries Dashboard is built with modern web technologies:
 The project follows a well-organized structure, typical for Next.js applications:
 
 ```
-
 .
 ├── components/
 │ ├── Order/
@@ -87,6 +86,7 @@ The project follows a well-organized structure, typical for Next.js applications
 │ ├── layout.js // Root layout for the application
 │ └── page.js // Main page component
 └── db.json // Fake API data (local backend)
+
 ```
 ---
 
