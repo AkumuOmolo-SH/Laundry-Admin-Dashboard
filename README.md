@@ -17,13 +17,15 @@
 
 ---
 
-## Project Overview
+**## Project Overview**
 
 Kneat Laundries – Business Admin Dashboard is a simple yet smart web-based dashboard built specifically for small laundry businesses. It helps shop owners and employees manage customer laundry orders digitally. The platform allows users to view all current orders, add new ones, mark them as completed, or delete them when done — functioning like a digital notebook that’s clean, organized, and always up to date. It offers a user-friendly, responsive interface that streamlines workflow and enhances daily operations.
 
 This Minimum Viable Product (MVP) focuses on core functionalities to provide a seamless digital management experience for laundry businesses.
 
-## Features
+---
+
+**## Features**
 
 As an administrator or employee, you can:
 
@@ -36,7 +38,9 @@ As an administrator or employee, you can:
 -   **Clean, mobile-friendly dashboard:** Access and manage orders efficiently on various devices, thanks to a responsive design.
 -   **Real-time updates:** Experience dynamic updates of your orders, powered by a local JSON database acting as a fake REST API.
 
-## Technologies Used
+---
+
+**## Technologies Used**
 
 The Kneat Laundries Dashboard is built with modern web technologies:
 
@@ -46,6 +50,8 @@ The Kneat Laundries Dashboard is built with modern web technologies:
     -   [Tailwind CSS](https://tailwindcss.com/): A utility-first CSS framework for rapidly styling components.
     -   Global CSS: For additional styling and overrides.
 
+---
+
 -   **Backend (Fake API):**
     -   `db.json`: A simple JSON file serving as a local, fake REST API for order management.
 
@@ -53,11 +59,13 @@ The Kneat Laundries Dashboard is built with modern web technologies:
     -   **Frontend:** Vercel
     -   **Backend (Fake API):** Render
 
-## Project Structure
+---
+
+**## Project Structure**
 
 The project follows a well-organized structure, typical for Next.js applications:
 
-
+```
 
 .
 ├── components/
@@ -79,6 +87,8 @@ The project follows a well-organized structure, typical for Next.js applications
 │ ├── layout.js // Root layout for the application
 │ └── page.js // Main page component
 └── db.json // Fake API data (local backend)
+```
+---
 
 **Key Directories/Files:**
 
@@ -89,7 +99,9 @@ The project follows a well-organized structure, typical for Next.js applications
 -   `public/`: For static assets like images and `favicon.ico`.
 -   `globals.css`: Contains global CSS styles for the application.
 
-## Installation
+---
+
+**## Installation**
 
 To set up the project locally, follow these steps:
 
@@ -99,6 +111,7 @@ To set up the project locally, follow these steps:
     git clone <your-repository-url>
     cd kneat-laundries-dashboard
     ```
+
 
 2.  **Install frontend dependencies:**
 
@@ -118,7 +131,7 @@ To set up the project locally, follow these steps:
     npm install --save-dev json-server
     ```
 
-## Running the Application
+**## Running the Application**
 
 To run both the frontend and the fake backend concurrently, you'll need two separate terminal windows.
 
@@ -143,7 +156,9 @@ To run both the frontend and the fake backend concurrently, you'll need two sepa
 
     The frontend application will typically be accessible at `http://localhost:3000`.
 
-## Preview the System (Deployed Links)
+---
+
+**## Preview the System (Deployed Links)**
 
 You can preview the deployed versions of the Kneat Laundries Dashboard:
 
@@ -162,15 +177,22 @@ We welcome contributions to improve the Kneat Laundries Dashboard! If you'd like
 4.  Push to the branch (`git push origin feature/your-feature-name`).
 5.  Open a Pull Request.
 
-## License
+**###  Authors**
 
-This project is open-sourced under the MIT License. See the `LICENSE` file for more details.
+**Akumu Omolo**  
+GitHub: [@AkumuOmolo-SH](https://github.com/AkumuOmolo-SH)
 
-## Contact
+**Willy Kyeni**
+Github: https://github.com/WillyKyeni3
 
-If you have any questions or feedback, feel free to reach out:
+**Mike Muteithia**
+Github: https://github.com/Mike-Muteithia
 
-[Your Name/Email/GitHub Profile]
-
+**Grace Bass**
+GitHub: https://github.com/Grace-Eileen7
 ---
+
+**### License**
+
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 
